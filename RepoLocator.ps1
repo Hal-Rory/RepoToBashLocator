@@ -32,8 +32,9 @@ while($Found -ne $true){
         if($Repo -eq 'list'){
             $Folder = $Location
         } else {
-            $Folder = $Location + $Repo -replace 'list '
+            $Folder = $Location + "/" + $Repo -replace 'list '
         }
+
         if (Test-Path -Path $Folder) {            
             $List = Get-ChildItem -Path $Folder | select name
             foreach ($Directory in $List){
@@ -41,7 +42,7 @@ while($Found -ne $true){
             }
         }
     } else {
-        $Folder = "$Location" +"$Repo"
+        $Folder = "$Location\$Repo"
         if (Test-Path -Path $Folder) {
             cd $Folder
             start "C:\Program Files\Git\git-bash.exe"
